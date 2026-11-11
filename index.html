@@ -1,0 +1,113 @@
+<!doctype html>
+<html lang="de">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover">
+<meta name="theme-color" content="#3a2a2a">
+<meta name="mobile-web-app-capable" content="yes">
+<meta name="apple-mobile-web-app-capable" content="yes">
+<meta name="description" content="Eichelpfad – ein gemütliches Pixel-Art-Rätsel mit Eichhörnchen Fips und Affe Kiko.">
+<title>Eichelpfad</title>
+<link rel="preload" href="fonts/pixelify-sans-latin-700-normal.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<canvas id="game" aria-label="Spielfeld"></canvas>
+
+<div id="ui">
+  <section id="menu" class="hidden">
+    <div class="logo">
+      <img id="logo-acorn" alt="">
+      <h1 data-t="title"></h1>
+      <p data-t="subtitle"></p>
+    </div>
+    <div class="menu-card">
+      <div class="journey-row">
+        <button class="btn small" id="lvl-prev" aria-label="-">&lt;</button>
+        <button class="btn primary grow" id="btn-journey"></button>
+        <button class="btn small" id="lvl-next" aria-label="+">&gt;</button>
+      </div>
+      <div class="journey-info" id="journey-info"></div>
+      <button class="btn" id="btn-daily"></button>
+      <div class="row">
+        <button class="btn grow" id="btn-help" data-t="help"></button>
+        <button class="btn grow" id="btn-settings" data-t="settings"></button>
+      </div>
+      <button class="btn char-btn hidden" id="btn-char"><img id="char-img" alt=""><span id="char-label"></span></button>
+    </div>
+  </section>
+
+  <header id="hud-top" class="hidden">
+    <button class="icon-btn" id="btn-menu"><img alt="Menu"></button>
+    <div class="hud-title">
+      <div id="hud-level"></div>
+      <div id="hud-moves"></div>
+    </div>
+    <div class="hud-acorns"><img id="hud-acorn-img" alt=""><span id="hud-acorns"></span></div>
+  </header>
+  <div id="tip" class="hidden"></div>
+  <div id="toast" class="hidden"><img alt=""><span></span></div>
+
+  <footer id="hud-bottom" class="hidden">
+    <button class="icon-btn big" id="btn-undo"><img alt=""><span data-t="undo"></span></button>
+    <button class="icon-btn big" id="btn-restart"><img alt=""><span data-t="restart"></span></button>
+    <button class="icon-btn big" id="btn-hint"><img alt=""><span data-t="hint"></span></button>
+    <button class="icon-btn big" id="btn-skip"><img alt=""><span data-t="skip"></span></button>
+  </footer>
+
+  <div id="loading" class="hidden"><img alt=""><span></span></div>
+
+  <div id="story" class="hidden">
+    <div class="story-box">
+      <img id="story-portrait" alt="">
+      <div class="story-text">
+        <div id="story-name"></div>
+        <div id="story-line"></div>
+      </div>
+      <button class="btn small" id="story-skip" data-t="skipStory"></button>
+      <div class="story-more">▼</div>
+    </div>
+  </div>
+
+  <div id="overlay" class="hidden">
+    <div class="panel hidden" id="win">
+      <h2 id="win-title"></h2>
+      <div class="stars" id="win-stars"></div>
+      <div id="win-moves"></div>
+      <div class="quip"><img id="win-portrait" alt=""><span id="win-quip"></span></div>
+      <div id="win-extra"></div>
+      <div class="row">
+        <button class="btn grow" id="win-retry" data-t="retry"></button>
+        <button class="btn primary grow" id="win-next"></button>
+      </div>
+      <button class="btn" id="win-menu" data-t="menu"></button>
+    </div>
+
+    <div class="panel hidden" id="settings">
+      <h2 data-t="settings"></h2>
+      <div class="set-row"><span data-t="language"></span><button class="btn small" id="set-lang"></button></div>
+      <div class="set-row"><span data-t="music"></span><button class="btn small" id="set-music"></button></div>
+      <div class="set-row"><span data-t="sfx"></span><button class="btn small" id="set-sfx"></button></div>
+      <div class="set-row" id="set-char-row"><span data-t="character"></span><button class="btn small" id="set-char"></button></div>
+      <button class="btn danger" id="set-reset" data-t="reset"></button>
+      <button class="btn primary" data-close data-t="close"></button>
+    </div>
+
+    <div class="panel hidden" id="help">
+      <h2 data-t="help"></h2>
+      <div id="help-list"></div>
+      <button class="btn primary" data-close data-t="close"></button>
+    </div>
+
+    <div class="panel hidden" id="confirm">
+      <p id="confirm-text"></p>
+      <div class="row">
+        <button class="btn grow" id="confirm-no" data-t="no"></button>
+        <button class="btn danger grow" id="confirm-yes" data-t="yes"></button>
+      </div>
+    </div>
+  </div>
+</div>
+<script type="module" src="js/main.js"></script>
+</body>
+</html>
